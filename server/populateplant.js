@@ -15,13 +15,18 @@ async function populatePlants() {
         await sequelize.sync();
 
         for(const data of mock_data){
+          for(let i=1;i<=7;i++){
+            const availableplants = Math.floor(Math.random() * 5) + 1;
             await Plants.create({
                 plant_name : data.plant_name,
                 quantity: data.quantity,
                 price: data.price,
-                toLocation: data.toLocation,
+                location: data.location,
+                available_plants: availableplants,
+                
             });
         }
+     }
         
     console.log("Data populated successfully");
 
